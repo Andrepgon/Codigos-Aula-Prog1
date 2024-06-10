@@ -38,18 +38,40 @@ vetor intercalar (vetor a, vetor b)
     vetor c;
     c.dimensao = a.dimensao + b.dimensao;
     int pa = 0, pb = 0, pc = 0;
-    while (pc < c.dimensao)
+    while (pa < a.dimensao && pb < b.dimensao)
     {
         if (a.entrada[pa] < b.entrada[pb])
         {
             c.entrada[pc] = a.entrada[pa];
             pa++;
-            pc++;
-        }
+        }   
         else
+        {
+            c.entrada[pc] = b.entrada[pb];
+            pb++;
+        }
+        pc++;
+    }
+    while (pb >= b.dimensao)
+    {
+        c.entrada[pc] = a.entrada[pa];
+        pa++;
+        pc++;
+        if (pc >= c.dimensao)
+        {
+            return c;
+        }
+    }
+    while (pa >= a.dimensao)
+    {
         c.entrada[pc] = b.entrada[pb];
         pb++;
         pc++;
+        if (pc >= c.dimensao)
+        {
+            return c;
+        }
     }
+    
     return c;
 }
