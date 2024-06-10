@@ -1,5 +1,7 @@
+
 #include <stdio.h>
 #define  MAXIMO 20
+
 typedef struct{
     int dimensao;
     int entrada[2*MAXIMO];
@@ -35,11 +37,19 @@ vetor intercalar (vetor a, vetor b)
 {
     vetor c;
     c.dimensao = a.dimensao + b.dimensao;
-    int i = 0, j = 0, k = 0;
-    while (k < c.dimensao)
+    int pa = 0, pb = 0, pc = 0;
+    while (pc < c.dimensao)
     {
-        if( i > )
+        if (a.entrada[pa] < b.entrada[pb])
+        {
+            c.entrada[pc] = a.entrada[pa];
+            pa++;
+            pc++;
+        }
+        else
+        c.entrada[pc] = b.entrada[pb];
+        pb++;
+        pc++;
     }
-    
+    return c;
 }
-
