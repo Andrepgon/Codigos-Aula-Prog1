@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 99
+
+int soma_linha[MAX];
+int soma_coluna[MAX];
+int soma_diagonal[2];
+
+int main()
+{
+    int tamanho;
+    printf("Digite o tamanho da sua matriz quadrada: ");
+    scanf("%d", &tamanho);
+    if (tamanho <= 1 || tamanho >= 100)
+    {
+        printf("O tamanho deve ser 1 < N < 100\n");
+        return 1;
+    }
+    
+    int matriz[tamanho][tamanho];
+
+    printf("Popule a matriz %dx%d:\n", tamanho, tamanho);
+    for (int linha = 0; linha < tamanho; linha++)
+    {
+        for (int coluna = 0; coluna < tamanho; coluna++)
+        {
+            scanf("%d", &matriz[linha][coluna]);
+            
+            soma_linha[linha] += matriz[linha][coluna];
+            soma_coluna[coluna] += matriz[linha][coluna];
+
+            if (linha == coluna)
+            {
+                soma_diagonal[0] += matriz[linha][coluna];
+            }
+            if ((linha + coluna) == (tamanho - 1))
+            {
+                soma_diagonal[1] += matriz[linha][coluna];
+            } 
+        }
+    }
+
+    // Verificar se todas as somas são iguais
+    int soma_referencia = soma_linha[0]; // Usaremos a primeira linha como referência
+
+    // Verifica todas as linhas e colunas
+    for (int i = 0; i < tamanho; i++)
+    {
+        if (soma_linha[i] != soma_referencia || soma_coluna[i] != soma_referencia)
+        {
+            printf("Falso\n");
+            return 0;
+        }
+    }
+
+    // Verifica as diagonais
+    if (soma_diagonal[0] != soma_referencia || soma_diagonal[1] != soma_referencia)
+    {
+        printf("Falso\n");
+        return 0;
+    }
+
+    // Se passou por todas as verificações, é um quadrado mágico
+    printf("Verdadeiro\n");
+
+    return 0;
+}
