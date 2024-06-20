@@ -33,8 +33,8 @@ int main()
         }
     }
     printf("nota: %d \n", nota);
-    return 0;
-
+    
     free(prova);
     free(resposta);
+    return 0;
 }
